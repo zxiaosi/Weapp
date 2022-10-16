@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "myApp",
-  "description": "小程序demo",
+  "projectname": "Weapp",
+  "description": "Weapp-Demo",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,

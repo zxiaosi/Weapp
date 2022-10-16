@@ -1,8 +1,8 @@
 {
-  "name": "myApp",
+  "name": "Weapp",
   "version": "1.0.0",
   "private": true,
-  "description": "小程序demo",
+  "description": "Weapp-Demo",
   "templateInfo": {
     "name": "default",
     "typescript": true,
