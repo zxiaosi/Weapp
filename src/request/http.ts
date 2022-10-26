@@ -6,7 +6,7 @@ import interceptor from './interceptors';
 // logInterceptor - 用于打印请求的相关信息
 // timeoutInterceptor - 在请求超时时抛出错误。
 // const interceptors = [customInterceptor, Taro.interceptors.logInterceptor]
-Taro.addInterceptor(interceptor); // 必须写在这里
+// Taro.addInterceptor(interceptor); // 必须写在这里
 
 export interface IRequestData {
   [key: string]: any;
@@ -44,6 +44,7 @@ class HttpRequest {
       ...requestOptions
     };
 
+    Taro.addInterceptor(interceptor);
     const resp = await Taro.request(params);
     return resp;
   }
