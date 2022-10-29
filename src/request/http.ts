@@ -6,47 +6,89 @@ import interceptor from './interceptors';
 // logInterceptor - 用于打印请求的相关信息
 // timeoutInterceptor - 在请求超时时抛出错误。
 // const interceptors = [customInterceptor, Taro.interceptors.logInterceptor]
-// Taro.addInterceptor(interceptor); // 必须写在这里
 
+/** 
+     * 添加拦截器 (务必与 Taro.request 放到一起)
+     * https://taro-docs.jd.com/docs/apis/network/request/addInterceptor
+     */
+Taro.addInterceptor(interceptor);
+
+/** 自定义请求体 */
 export interface IRequestData {
   [key: string]: any;
 }
 
+/** 
+ * 自定义响应体 
+ * 根据后端的返回的 数据格式 来
+ * 或者: Taro.request.SuccessCallbackResult<T>
+ */
+export interface IResponseData<T> {
+  data: T;
+  total: number;
+  code: number;
+  msg: string;
+}
+
+/** 自定义配置 */
 export interface IRequestOption extends Partial<Taro.request.Option<string | IRequestData>> {
 
   /**
-   * 启动错误弹窗
-   *
-   * @type {boolean}
-   * @memberof IFetchOption
+   * 是否需要Token
    */
-  showFailToast?: boolean;
+  isNeedToken?: boolean;
 
   /**
-   * 是否捕获错误 [接口status错误,阻止代码的继续运行]
-   *
-   * @type {boolean}
-   * @memberof IFetchOption
+   * 是否需要加载遮罩层
    */
-  isCatchFail?: boolean;
+  isShowLoadig?: boolean;
+
+  /**
+   * 启动错误弹窗
+   */
+  isShowFailToast?: boolean;
 }
 
+/** 封装请求类 */
 class HttpRequest {
 
-  async request<T>(url: string, data: IRequestData | string = {}, options: IRequestOption): Promise<Taro.request.Promised<T>> {
-    const requestUrl = BASE_URL + url;
-    const requestOptions = { ...options };
-    const header = { "Content-Type": "application/json" };
-    const params = {
-      url: requestUrl,
-      data,
-      header,
-      ...requestOptions
-    };
+  customOptions: IRequestOption = {
+    isNeedToken: true,
+    isShowLoadig: false,
+    isShowFailToast: true
+  };
 
-    Taro.addInterceptor(interceptor);
-    const resp = await Taro.request(params);
+  async request<T>(url: string, data: string | IRequestData = {}, options: IRequestOption): Promise<Taro.request.SuccessCallbackResult<IResponseData<T> | T>> {
+    const requestUrl = BASE_URL + url;
+    const header = { "Content-Type": "application/json" };
+    const requestData = this.parseParams(options.method, data);
+    const requestOptions = { ...this.customOptions, ...options };
+    const params = { url: requestUrl, data: requestData, header, ...requestOptions };
+
+    // 发起请求
+    const resp = await Taro.request(params) as any;
     return resp;
+  }
+
+  /**
+   * 处理 GET 请求中特殊字符
+   */
+  parseParams(method?: string, params?: any) {
+    let newParams = "";
+
+    if (method == "GET") {
+      for (const i in params) {
+        if (newParams === "") {
+          newParams += "?" + i + "=" + encodeURIComponent(params[i]);
+        } else {
+          newParams += "&" + i + "=" + encodeURIComponent(params[i]);
+        }
+      }
+    } else {
+      newParams = params;
+    }
+
+    return newParams;
   }
 }
 

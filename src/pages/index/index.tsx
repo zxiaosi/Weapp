@@ -5,7 +5,8 @@ import { getUserList } from "../../apis";
 import Taro from "@tarojs/taro";
 
 export default class Index extends Component<PropsWithChildren> {
-  componentWillMount() { }
+  componentWillMount() {
+  }
 
   async componentDidMount() {
     const resp = await getUserList();
