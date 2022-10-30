@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { BASE_URL } from '../config';
+import { BASE_URL } from '~/config';
 import interceptor from './interceptors';
 
 // Taro 提供了两个内置拦截器

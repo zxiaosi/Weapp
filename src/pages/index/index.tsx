@@ -1,8 +1,13 @@
+import Taro from "@tarojs/taro";
 import { Component, PropsWithChildren } from "react";
 import { View, Text } from "@tarojs/components";
 import styles from "./index.module.less";
-import { getUserList } from "../../apis";
-import Taro from "@tarojs/taro";
+import { getUserList } from "~/apis";
+
+definePageConfig({
+  navigationBarTitleText: '首页'
+})
+
 
 export default class Index extends Component<PropsWithChildren> {
   componentWillMount() {

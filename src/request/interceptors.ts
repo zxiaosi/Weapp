@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { LOGIN_URL, tokenStorage, userInfoStorage } from "../../src/config";
+import { LOGIN_URL, tokenStorage, userInfoStorage } from "~/config";
 import { post } from ".";
 import { showStatus } from "./statusCode";
 
