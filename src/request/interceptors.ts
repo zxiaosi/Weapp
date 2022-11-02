@@ -50,8 +50,12 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
       return response;
     } else {
       console.info("后端返回的错误信息--", msg);
+
       if (isShowFailToast) Taro.showToast({ icon: 'none', title: msg || "未知错误，十分抱歉！", duration: 2000 });
-      return
+
+      if (!response.data.data) response.data.data = {}; // 防止解构报错
+
+      return response;
     }
 
   } else { // HTTP 失败
