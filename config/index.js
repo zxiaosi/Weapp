@@ -28,7 +28,8 @@ const config = {
   mini: {
     postcss: {
       pxtransform: {
-        enable: true,
+        // https://taro-docs.jd.com/docs/size
+        enable: false, // px 自动转为 rpx
         config: {}
       },
       url: {
@@ -44,7 +45,18 @@ const config = {
           generateScopedName: "[name]__[local]___[hash:base64:5]"
         }
       }
-    }
+    },
+    // lessLoaderOption: {
+    //   lessOptions: {
+    //     strictMath: true,
+    //     noIeCompat: true,
+    //     javascriptEnabled: true,
+    //     paths: [
+    //       resolve(__dirname, "../src/modules"),
+    //       resolve(__dirname, "../node_modules")
+    //     ]
+    //   }
+    // }
   },
   h5: {
     publicPath: "/",

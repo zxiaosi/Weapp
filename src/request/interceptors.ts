@@ -1,7 +1,6 @@
 import Taro from "@tarojs/taro";
 import { LOGIN_URL, tokenStorage, userInfoStorage } from "~/config";
 import { post } from ".";
-import { showStatus } from "./statusCode";
 
 /**
  * 获取 Token
@@ -41,33 +40,36 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
 
   if (isShowLoadig) Taro.hideLoading();
 
-  const { statusCode, data } = response;
+  const { statusCode, data, errMsg } = response; // HTTP 返回的数据格式 
 
   if (statusCode === 200) { // HTTP 成功
-    const { code, msg } = data;
 
-    // 如果后端设置的没有响应体, 直接返回
-    // return response;
+    const { code, msg } = data; // 后端自定义的响应格式
 
-    // 如果后端设置的有响应体, 自定义
-    if (code === 1) { // 后端自定义 acode
+    if (code == 0) {
       return response;
+    } else {
+      console.info("后端返回的错误信息--", msg);
+      if (isShowFailToast) Taro.showToast({ icon: 'none', title: msg || "未知错误，十分抱歉！", duration: 2000 });
+      return
     }
 
-    console.warn("错误信息--", msg);
-    return
   } else { // HTTP 失败
-    let errMsg = showStatus(statusCode);
-    console.error("请求失败--", errMsg);
+    let title = "未知错误，万分抱歉！";
 
-    if (isShowFailToast) Taro.showToast({ title: errMsg, icon: 'none' });
+    if (statusCode === -1) title = "网络请求失败，请检查您的网络。";
 
-    switch (statusCode) {
-      case 401:
-        Taro.clearStorage();
-        Taro.reLaunch({ url: LOGIN_URL });
-        break;
+    if (statusCode > 0) title = `url:${request.url.toString()}, statusCode:${response.statusCode}`;
+
+    if (statusCode == 401) {
+      Taro.clearStorage();
+      Taro.reLaunch({ url: LOGIN_URL });
     }
+
+    console.error("HTTP请求失败--", title || errMsg);
+
+    if (isShowFailToast) Taro.showToast({ icon: 'none', title: title || errMsg, duration: 200 });
+
     return
   }
 }

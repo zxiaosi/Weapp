@@ -4,12 +4,16 @@
   "description": "Weapp-Demo",
   "appid": "wx25adff2e6b2572ed",
   "setting": {
-    "urlCheck": true,
     "es6": false,
     "enhance": false,
-    "compileHotReLoad": false,
     "postcss": false,
-    "minified": false
+    "minified": false,
+    "minifyWXSS": true,
+    "minifyWXML": false,
+    "ignoreUploadUnusedFiles": true,
+    "urlCheck": true,
+    "compileHotReLoad": false,
+    "bigPackageSizeSupport": true
   },
   "compileType": "miniprogram"
 }

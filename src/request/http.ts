@@ -8,9 +8,9 @@ import interceptor from './interceptors';
 // const interceptors = [customInterceptor, Taro.interceptors.logInterceptor]
 
 /** 
-     * 添加拦截器 (务必与 Taro.request 放到一起)
-     * https://taro-docs.jd.com/docs/apis/network/request/addInterceptor
-     */
+ * 添加拦截器 (务必与 Taro.request 放到一起)
+ * https://taro-docs.jd.com/docs/apis/network/request/addInterceptor
+ */
 Taro.addInterceptor(interceptor);
 
 /** 自定义请求体 */
@@ -35,16 +35,19 @@ export interface IRequestOption extends Partial<Taro.request.Option<string | IRe
 
   /**
    * 是否需要Token
+   * @default true
    */
   isNeedToken?: boolean;
 
   /**
    * 是否需要加载遮罩层
+   * @default false
    */
   isShowLoadig?: boolean;
 
   /**
    * 启动错误弹窗
+   * @default true
    */
   isShowFailToast?: boolean;
 }
@@ -71,12 +74,12 @@ class HttpRequest {
   }
 
   /**
-   * 处理 GET 请求中特殊字符
+   * 处理 GET DELETE 请求中特殊字符
    */
   parseParams(method?: string, params?: any) {
     let newParams = "";
 
-    if (method == "GET") {
+    if (method == "GET" || method == "DELETE") {
       for (const i in params) {
         if (newParams === "") {
           newParams += "?" + i + "=" + encodeURIComponent(params[i]);
