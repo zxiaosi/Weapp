@@ -1,6 +1,7 @@
 import Taro from "@tarojs/taro";
 import { Component, PropsWithChildren } from "react";
 import { View, Text } from "@tarojs/components";
+import sign_05_icon_select from "~/images/sign_05_icon_select.png";
 import styles from "./index.module.less";
 import { getUserList } from "~/apis";
 
@@ -14,8 +15,10 @@ export default class Index extends Component<PropsWithChildren> {
   }
 
   async componentDidMount() {
-    const resp = await getUserList();
-    console.log("resp---", resp);
+    console.log("sign_05_icon_select", sign_05_icon_select);
+    
+    // const resp = await getUserList();
+    // console.log("resp---", resp);
   }
 
   componentWillUnmount() { }

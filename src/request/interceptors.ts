@@ -49,13 +49,9 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
     if (code == 0) {
       return response;
     } else {
-      console.info("后端返回的错误信息--", msg);
-
       if (isShowFailToast) Taro.showToast({ icon: 'none', title: msg || "未知错误，十分抱歉！", duration: 2000 });
 
-      if (!response.data.data) response.data.data = {}; // 防止解构报错
-
-      return response;
+      throw new Error(`后端返回的错误信息-- ${msg}`);
     }
 
   } else { // HTTP 失败
@@ -70,11 +66,9 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
       Taro.reLaunch({ url: LOGIN_URL });
     }
 
-    console.error("HTTP请求失败--", title || errMsg);
-
     if (isShowFailToast) Taro.showToast({ icon: 'none', title: title || errMsg, duration: 200 });
 
-    return
+    throw new Error(`HTTP请求失败---- ${title || errMsg}`);
   }
 }
 

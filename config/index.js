@@ -34,8 +34,8 @@ const config = {
       },
       url: {
         enable: true,
-        config: {
-          limit: 1024 // 设定转换尺寸上限
+        config: { // 相当于 配置 imageUrlLoaderOption
+          limit: 512 // 设定转换尺寸上限, 单位为 b,(图片超过这个大小 不会 转为base64)
         }
       },
       cssModules: {
@@ -85,7 +85,7 @@ const config = {
   }
 };
 
-module.exports = function(merge) {
+module.exports = function (merge) {
   if (process.env.NODE_ENV === "development") {
     return merge({}, config, require("./dev"));
   }
