@@ -23,9 +23,9 @@ export async function requestToken() {
  * 请求拦截器
  */
 async function requestInterceptor(request: Taro.RequestParams) {
-  const { header, isNeedToken, isShowLoadig } = request;
+  const { header, isNeedToken, isShowLoading } = request;
 
-  if (isShowLoadig) Taro.showLoading({ title: "加载中", mask: true });
+  if (isShowLoading) Taro.showLoading({ title: "加载中", mask: true });
 
   if (isNeedToken) request.header = { ...header, Authorization: await requestToken() };
 
@@ -36,9 +36,9 @@ async function requestInterceptor(request: Taro.RequestParams) {
  * 响应拦截器
  */
 function responseInterceptor(request: Taro.RequestParams, response: Taro.request.SuccessCallbackResult) {
-  const { isShowLoadig, isShowFailToast, isCatchError } = request;
+  const { isShowLoading, isShowFailToast, isCatchError } = request;
 
-  if (isShowLoadig) Taro.hideLoading();
+  if (isShowLoading) Taro.hideLoading();
 
   const { statusCode, data, errMsg } = response; // HTTP 返回的数据格式 
 

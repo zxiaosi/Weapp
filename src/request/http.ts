@@ -43,7 +43,7 @@ export interface IRequestOption extends Partial<Taro.request.Option<string | IRe
    * 是否显示Loadig遮罩层
    * @default false
    */
-  isShowLoadig?: boolean;
+  isShowLoading?: boolean;
 
   /**
    * 是否显示失败Toast
@@ -63,7 +63,7 @@ class HttpRequest {
 
   customOptions: IRequestOption = {
     isNeedToken: true,
-    isShowLoadig: false,
+    isShowLoading: false,
     isShowFailToast: true,
     isCatchError: false
   };
