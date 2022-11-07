@@ -52,7 +52,7 @@ export interface IRequestOption extends Partial<Taro.request.Option<string | IRe
   isShowFailToast?: boolean;
 
   /**
-   * 是否需要捕获错误数据(程序正常往下走)
+   * 是否返回错误请求(可以得到请求数据信息, 程序继续执行)
    * @default false
    */
   isCatchError?: boolean;
