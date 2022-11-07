@@ -36,7 +36,7 @@ async function requestInterceptor(request: Taro.RequestParams) {
  * 响应拦截器
  */
 function responseInterceptor(request: Taro.RequestParams, response: Taro.request.SuccessCallbackResult) {
-  const { isShowLoadig, isShowFailToast } = request;
+  const { isShowLoadig, isShowFailToast, isCatchError } = request;
 
   if (isShowLoadig) Taro.hideLoading();
 
@@ -50,6 +50,8 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
       return response;
     } else {
       if (isShowFailToast) Taro.showToast({ icon: 'none', title: msg || "未知错误，十分抱歉！", duration: 2000 });
+
+      if (isCatchError) return response;
 
       throw new Error(`后端返回的错误信息-- ${msg}`);
     }
