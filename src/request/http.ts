@@ -40,22 +40,22 @@ export interface IRequestOption extends Partial<Taro.request.Option<string | IRe
   isNeedToken?: boolean;
 
   /**
-   * 是否显示Loadig遮罩层
+   * 是否显示Loading遮罩层
    * @default false
    */
   isShowLoading?: boolean;
 
   /**
-   * 是否显示失败Toast
+   * 是否显示失败Toast弹框
    * @default true
    */
   isShowFailToast?: boolean;
 
   /**
-   * 是否返回错误请求(可以得到请求数据信息, 程序继续执行)
-   * @default false
+   * 是否抛出错误 (阻止代码的继续运行)
+   * @default true
    */
-  isCatchError?: boolean;
+  isThrowError?: boolean;
 }
 
 /** 封装请求类 */
@@ -65,7 +65,7 @@ class HttpRequest {
     isNeedToken: true,
     isShowLoading: false,
     isShowFailToast: true,
-    isCatchError: false
+    isThrowError: true
   };
 
   async request<T>(url: string, data: string | IRequestData = {}, options: IRequestOption): Promise<Taro.request.SuccessCallbackResult<IResponseData<T> | T>> {
