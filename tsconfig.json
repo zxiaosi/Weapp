@@ -14,15 +14,16 @@
     "strictNullChecks": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
     "rootDir": ".",
     "jsx": "react-jsx",
     "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["./src", "./types"],
+  "exclude": ["config", "dist", "node_modules"],
   "compileOnSave": false
 }

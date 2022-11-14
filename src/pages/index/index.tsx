@@ -1,24 +1,22 @@
-import Taro from "@tarojs/taro";
 import { Component, PropsWithChildren } from "react";
 import { View, Text } from "@tarojs/components";
-import sign_05_icon_select from "~/images/sign_05_icon_select.png";
 import styles from "./index.module.less";
-import { getUserList } from "~/apis";
+import Taro from "@tarojs/taro";
 
 definePageConfig({
-  navigationBarTitleText: '首页'
-})
-
+  navigationBarTitleText: "首页",
+});
 
 export default class Index extends Component<PropsWithChildren> {
-  componentWillMount() {
-  }
+  componentDidMount() {
+    Taro.getLocation({
+      type: "wgs84",
+      success: function (res) {
+        const { latitude, longitude, speed, accuracy } = res;
 
-  async componentDidMount() {
-    console.log("sign_05_icon_select", sign_05_icon_select);
-    
-    // const resp = await getUserList();
-    // console.log("resp---", resp);
+        console.log("用户位置信息--", latitude, longitude, speed, accuracy);
+      },
+    });
   }
 
   componentWillUnmount() { }
@@ -27,26 +25,10 @@ export default class Index extends Component<PropsWithChildren> {
 
   componentDidHide() { }
 
-  temp() {
-    Taro.showModal({
-      title: '提示',
-      content: '这是一个模态弹窗',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  }
-
   render() {
     return (
-      <View className={styles.page}>
+      <View className="index">
         <Text>Hello world!</Text>
-
-        <View onClick={() => { this.temp() }}>点我</View>
       </View>
     );
   }

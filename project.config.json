@@ -1,18 +1,21 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "Weapp",
-  "description": "Weapp-Demo",
-  "appid": "wx25adff2e6b2572ed",
+  "projectname": "demo",
+  "description": "测试Demo",
+  "appid": "touristappid",
   "setting": {
-    "es6": false,
-    "enhance": false,
+    "es6": true,
+    "enhance": true,
     "postcss": false,
     "minified": false,
     "minifyWXSS": true,
-    "minifyWXML": false,
+    "uglifyFileName": false,
     "ignoreUploadUnusedFiles": true,
+    "autoAudits": false,
     "urlCheck": true,
     "compileHotReLoad": false,
+    "preloadBackgroundData": false,
+    "lazyloadPlaceholderEnable": false,
     "bigPackageSizeSupport": true
   },
   "compileType": "miniprogram"
