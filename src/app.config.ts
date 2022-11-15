@@ -1,7 +1,9 @@
 export default defineAppConfig({
   entryPagePath: 'pages/home/index', // 小程序默认启动首页 (仅小程序端)
   pages: [
-    'pages/home/index'
+    'pages/home/index',
+    'pages/hookTest/index',
+    'pages/myEcharts/index',
   ],
   subPackages: [ // 分包
 
