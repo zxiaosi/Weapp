@@ -19,3 +19,6 @@ export const LOGIN_URL = "/pages/home/index";
 export const tokenStorage = "userToken";
 export const userInfoStorage = "userInfo";
 export const locationStorage = "userLocation";
+
+// 腾讯地图Key
+export const tencentMapKey = "DJJBZ-2TPHD-SXG44-H7VE2-2VRUT-ICBUU";

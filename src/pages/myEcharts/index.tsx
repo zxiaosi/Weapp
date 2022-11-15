@@ -1,6 +1,4 @@
 import { View } from "@tarojs/components";
-import Taro, { useDidHide, useDidShow, useLoad, useReady, useUnload } from "@tarojs/taro";
-import { useEffect, useState } from "react";
 import * as echarts from "~/modules/wxecharts/echarts";
 
 /**

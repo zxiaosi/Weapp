@@ -34,6 +34,9 @@ export default class Home extends Component<PropsWithChildren> {
       case "myEcharts":
         Taro.navigateTo({ url: "/pages/myEcharts/index" });
         break;
+      case "myMap":
+        Taro.navigateTo({ url: "/pages/myMap/index" });
+        break;
       default:
         Taro.showToast({ title: "未知路径！", icon: "none" });
         break;
@@ -46,6 +49,7 @@ export default class Home extends Component<PropsWithChildren> {
         <Text>Hello world!</Text>
         <Button onClick={this.pageTo.bind(this, "hookTest")}>Hook 测试</Button>
         <Button onClick={this.pageTo.bind(this, "myEcharts")}>Echarts-For-Weixin</Button>
+        <Button onClick={this.pageTo.bind(this, "myMap")}>地图 SDK</Button>
       </View>
     );
   }

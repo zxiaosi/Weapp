@@ -4,6 +4,7 @@ export default defineAppConfig({
     'pages/home/index',
     'pages/hookTest/index',
     'pages/myEcharts/index',
+    'pages/myMap/index',
   ],
   subPackages: [ // 分包
 
