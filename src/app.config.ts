@@ -1,7 +1,7 @@
 export default defineAppConfig({
-  entryPagePath: 'pages/index/index', // 小程序默认启动首页 (仅小程序端)
+  entryPagePath: 'pages/home/index', // 小程序默认启动首页 (仅小程序端)
   pages: [
-    'pages/index/index'
+    'pages/home/index'
   ],
   subPackages: [ // 分包
 

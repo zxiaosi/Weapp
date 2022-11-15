@@ -50,6 +50,11 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
+    },
+    compile: { // 编译过程的相关配置 https://taro.redwoodjs.cn/docs/2.x/config-detail#minicompile
+      exclude: [ // 排除某个文件
+        resolve(__dirname, '..', 'src/modules/qqmap/*.js'),
+      ]
     }
   },
   h5: {

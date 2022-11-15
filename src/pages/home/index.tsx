@@ -7,7 +7,7 @@ definePageConfig({
   navigationBarTitleText: "首页",
 });
 
-export default class Index extends Component<PropsWithChildren> {
+export default class Home extends Component<PropsWithChildren> {
   componentDidMount() {
     Taro.getLocation({
       type: "wgs84",

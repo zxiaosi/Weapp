@@ -19,8 +19,7 @@ export interface IRequestData {
 }
 
 /** 
- * 自定义响应体 
- * 根据后端的返回的 数据格式 来
+ * 自定义响应体 (根据后端的返回的 数据格式 来)
  * 或者: Taro.request.SuccessCallbackResult<T>
  */
 export interface IResponseData<T> {
@@ -53,7 +52,7 @@ export interface IRequestOption extends Partial<Taro.request.Option<string | IRe
 
   /**
    * 是否抛出错误 (阻止代码的继续运行)
-   * @default true
+   * @default false
    */
   isThrowError?: boolean;
 }
@@ -65,13 +64,13 @@ class HttpRequest {
     isNeedToken: true,
     isShowLoading: false,
     isShowFailToast: true,
-    isThrowError: true
+    isThrowError: false
   };
 
   async request<T>(url: string, data: string | IRequestData = {}, options: IRequestOption): Promise<Taro.request.SuccessCallbackResult<IResponseData<T> | T>> {
-    const requestUrl = BASE_URL + url;
+    const requestUrl = this.normalizationUrl(url);
     const header = { "Content-Type": "application/json" };
-    const requestData = this.parseParams(options.method, data);
+    const requestData = data;
     const requestOptions = { ...this.customOptions, ...options };
     const params = { url: requestUrl, data: requestData, header, ...requestOptions };
 
@@ -80,25 +79,25 @@ class HttpRequest {
     return resp;
   }
 
-  /**
-   * 处理 GET DELETE 请求中特殊字符
-   */
-  parseParams(method?: string, params?: any) {
-    let newParams = "";
+  /** 处理 url */
+  private normalizationUrl(url: string) {
+    let requestUrl = url;
 
-    if (method == "GET" || method == "DELETE") {
-      for (const i in params) {
-        if (newParams === "") {
-          newParams += "?" + i + "=" + encodeURIComponent(params[i]);
-        } else {
-          newParams += "&" + i + "=" + encodeURIComponent(params[i]);
-        }
+    if (BASE_URL[BASE_URL.length - 1] === '/') {
+      if (requestUrl[0] === '/') {
+        requestUrl = requestUrl.replace('/', '');
       }
     } else {
-      newParams = params;
+      if (requestUrl[0] !== '/') {
+        requestUrl = '/' + requestUrl;
+      }
     }
 
-    return newParams;
+    if (!/^https{0,1}:\/\//g.test(requestUrl)) {
+      requestUrl = `${BASE_URL}${requestUrl}`;
+    }
+
+    return requestUrl;
   }
 }
 
