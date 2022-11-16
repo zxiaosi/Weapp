@@ -2,7 +2,8 @@ import { Component, PropsWithChildren } from "react";
 import { View, Text, Button } from "@tarojs/components";
 import styles from "./index.module.less";
 import Taro from "@tarojs/taro";
-import { locationStorage } from "~/config";
+import { locationStorage, userInfoStorage } from "~/config";
+import { userData } from "~/tempData";
 
 definePageConfig({
   navigationBarTitleText: "首页",
@@ -10,6 +11,9 @@ definePageConfig({
 
 export default class Home extends Component<PropsWithChildren> {
   componentDidMount() {
+    console.log("用户信息--", userData);
+    Taro.setStorageSync(userInfoStorage, userData);
+    
     Taro.getLocation({
       type: "gcj02", // wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
       success: function (res) {
@@ -49,7 +53,7 @@ export default class Home extends Component<PropsWithChildren> {
         <Text>Hello world!</Text>
         <Button onClick={this.pageTo.bind(this, "hookTest")}>Hook 测试</Button>
         <Button onClick={this.pageTo.bind(this, "myEcharts")}>Echarts-For-Weixin</Button>
-        <Button onClick={this.pageTo.bind(this, "myMap")}>地图 SDK</Button>
+        <Button onClick={this.pageTo.bind(this, "myMap")}>地图</Button>
       </View>
     );
   }

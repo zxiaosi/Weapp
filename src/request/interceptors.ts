@@ -46,7 +46,7 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
 
     const { code, msg } = data; // 后端自定义的响应格式
 
-    if (code == 0) {
+    if (code == 1) {
       return response;
     } else {
       if (isShowFailToast) Taro.showToast({ icon: 'none', title: msg || "未知错误，十分抱歉！", duration: 2000 });
@@ -82,13 +82,13 @@ const interceptor = async function (chain: Taro.Chain) {
   const requestParams = chain.requestParams;
   const { method, data, url } = requestParams;
 
-  console.log(`http ${method || "GET"} --> ${url} data: `, data);
+  // console.log(`http ${method || "GET"} --> ${url} data: `, data);
 
   let req = await requestInterceptor(requestParams); // 请求拦截器
 
   return chain.proceed(req).then((res: Taro.request.SuccessCallbackResult) => {
 
-    console.log(`http <-- ${url} result:`, res);
+    // console.log(`http <-- ${url} result:`, res);
 
     return responseInterceptor(req, res); // 响应拦截器
   });

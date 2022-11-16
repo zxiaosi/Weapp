@@ -1,11 +1,10 @@
-import Taro from '@tarojs/taro';
 import { Component, PropsWithChildren } from 'react'
 import './app.less'
 import { env } from './config';
 
 class App extends Component<PropsWithChildren> {
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log("当前运行环境:", env);
   }
 
