@@ -19,3 +19,6 @@ export const LOGIN_URL = "/pages/home/index";
 export const tokenStorage = "userToken";
 export const userInfoStorage = "userInfo";
 export const locationStorage = "userLocation";
+
+// 地图id名(回到当前位置用)
+export const mapId = "myMap";

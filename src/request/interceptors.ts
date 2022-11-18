@@ -49,7 +49,7 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
     if (code == 1) {
       return response;
     } else {
-      if (isShowFailToast) Taro.showToast({ icon: 'none', title: msg || "未知错误，十分抱歉！", duration: 2000 });
+      if (isShowFailToast) Taro.showToast({ icon: 'none', title: msg || "未知错误，十分抱歉！", duration: 2000, mask: true });
 
       if (isThrowError) throw new Error(`后端返回的错误信息-- ${msg}`); // 抛出错误, 阻止程序向下执行
 
@@ -68,7 +68,7 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
       Taro.reLaunch({ url: LOGIN_URL });
     }
 
-    if (isShowFailToast) Taro.showToast({ icon: 'none', title: title || errMsg, duration: 200 });
+    if (isShowFailToast) Taro.showToast({ icon: 'none', title: title || errMsg, duration: 2000, mask: true });
 
     throw new Error(`HTTP请求失败---- ${title || errMsg}`); // 抛出错误, 阻止程序向下执行
   }

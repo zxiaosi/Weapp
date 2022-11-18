@@ -2,44 +2,34 @@ import { Component, PropsWithChildren } from "react";
 import { View, Text, Button } from "@tarojs/components";
 import styles from "./index.module.less";
 import Taro from "@tarojs/taro";
-import { locationStorage, userInfoStorage } from "~/config";
-import { userData } from "~/tempData";
+import { userInfoStorage } from "~/config";
+import avatar from "~/images/avatar.png";
+import { getLocation, getLocationTemp } from "~/utils/handleLocation";
 
 definePageConfig({
   navigationBarTitleText: "首页",
 });
 
 export default class Home extends Component<PropsWithChildren> {
-  componentDidMount() {
+  async componentDidMount() {
+    const userData = {
+      id: 1, name: "zzw", sex: 1, avatar: avatar,
+      createTime: "2022-10-21 12:23:45", updateTime: "2022-10-21 12:23:46"
+    }
     console.log("用户信息--", userData);
     Taro.setStorageSync(userInfoStorage, userData);
-    
-    Taro.getLocation({
-      type: "gcj02", // wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
-      success: function (res) {
-        const { latitude, longitude, speed, accuracy } = res;
-        Taro.setStorageSync(locationStorage, { latitude, longitude, speed, accuracy });
-        console.log("用户位置信息--", latitude, longitude, speed, accuracy);
-      },
-    });
+
+    // await getLocation(); // 需要appId
+    getLocationTemp(); // 临时获取
   }
-
-  componentWillUnmount() { }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
 
   pageTo(path: string) {
     switch (path) {
-      case "hookTest":
-        Taro.navigateTo({ url: "/pages/hookTest/index" });
-        break;
-      case "myEcharts":
-        Taro.navigateTo({ url: "/pages/myEcharts/index" });
-        break;
-      case "myMap":
-        Taro.navigateTo({ url: "/pages/myMap/index" });
+      case "hooks":
+      case "echarts":
+      case "map":
+      case "mqtt":
+        Taro.navigateTo({ url: `/pages/test/${path}/index` });
         break;
       default:
         Taro.showToast({ title: "未知路径！", icon: "none" });
@@ -51,9 +41,10 @@ export default class Home extends Component<PropsWithChildren> {
     return (
       <View className={styles.page}>
         <Text>Hello world!</Text>
-        <Button onClick={this.pageTo.bind(this, "hookTest")}>Hook 测试</Button>
-        <Button onClick={this.pageTo.bind(this, "myEcharts")}>Echarts-For-Weixin</Button>
-        <Button onClick={this.pageTo.bind(this, "myMap")}>地图</Button>
+        <Button onClick={this.pageTo.bind(this, "hooks")}>Hook 测试</Button>
+        <Button onClick={this.pageTo.bind(this, "echarts")}>Echarts-For-Weixin 测试</Button>
+        <Button onClick={this.pageTo.bind(this, "map")}>Map 测试</Button>
+        <Button onClick={this.pageTo.bind(this, "mqtt")}>Mqtt 测试</Button>
       </View>
     );
   }
