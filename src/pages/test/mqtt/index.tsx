@@ -7,7 +7,7 @@ definePageConfig({
 });
 
 
-export default function Mqtt() {
+export default function MqttTest() {
 
   useLoad(() => {
     console.log("mqtt", mqtt);
