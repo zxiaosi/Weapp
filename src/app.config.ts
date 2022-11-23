@@ -9,8 +9,13 @@ export default defineAppConfig({
       "pages": [
         "hooks/index", // hooks
         "map/index", // map
-        "echarts/index", // echarts
         "mqtt/index", // mqtt
+      ]
+    },
+    {
+      "root": "pages/echarts/", // echarts单独分包(防止体积过大)
+      "pages": [
+        "index",
       ]
     },
   ],

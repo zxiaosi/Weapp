@@ -2,7 +2,7 @@ import { View } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { Component } from 'react'
 import styles from "./index.module.less";
-import * as echarts from "~/modules/wxecharts/echarts";
+import * as echarts from "~/pages/echarts/wxecharts/echarts";
 
 /**
  * 文件版:

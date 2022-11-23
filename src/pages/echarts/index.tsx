@@ -1,13 +1,13 @@
 import { View } from "@tarojs/components";
 import { Component } from 'react'
 import styles from "./index.module.less";
-import MyEcharts from "~/components/myEchrts";
+import MyEcharts from "~/components/myEcharts";
 import { get } from "~/request";
 
 definePageConfig({
   navigationBarTitleText: "Echarts",
   // 使用echarts一定要先导入, 否则导致拿不到dom (会导致 useReady 出现问题)
-  usingComponents: { "ec-canvas": "~/modules/wxecharts/ec-canvas" },
+  usingComponents: { "ec-canvas": "~/pages/echarts/wxecharts/ec-canvas" },
 });
 
 export default class EchartsTest extends Component {
@@ -136,7 +136,7 @@ export default class EchartsTest extends Component {
     const [{ data: data1 }, { data: data2 }, { data: data3 }] = await Promise.all([repo1, repo2, repo3]);
     console.log("data", data1, data2, data3);
 
-    let option = this.echartsOption(Object.values(data1).splice(0, 7), Object.values(data2).splice(0, 7), Object.values(data3).splice(0, 7));
+    let option = this.echartsOption(Object.values(data1), Object.values(data2), Object.values(data3));
     chart.setOption(option);
   }
 

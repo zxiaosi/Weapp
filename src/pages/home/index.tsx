@@ -26,10 +26,12 @@ export default class Home extends Component<PropsWithChildren> {
   pageTo(path: string) {
     switch (path) {
       case "hooks":
-      case "echarts":
       case "map":
       case "mqtt":
         Taro.navigateTo({ url: `/pages/test/${path}/index` });
+        break;
+      case "echarts":
+        Taro.navigateTo({ url: `/pages/echarts/index` });
         break;
       default:
         Taro.showToast({ title: "未知路径！", icon: "none" });
