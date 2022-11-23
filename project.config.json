@@ -12,7 +12,7 @@
     "uglifyFileName": false,
     "ignoreUploadUnusedFiles": true,
     "autoAudits": false,
-    "urlCheck": true,
+    "urlCheck": false,
     "compileHotReLoad": false,
     "preloadBackgroundData": false,
     "lazyloadPlaceholderEnable": false,
