@@ -12,6 +12,7 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
+  plugins: [],
   defineConstants: { // 全局变量设置
   },
   copy: { // 文件 copy 配置
