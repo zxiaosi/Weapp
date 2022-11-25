@@ -1,19 +1,19 @@
 import Taro from "@tarojs/taro";
-import { LOGIN_URL, tokenStorage, userInfoStorage } from "~/config";
+import { LOGIN_URL, tokenStorage } from "~/config";
 import { post } from ".";
 
 /**
  * 获取 Token
  */
 export async function requestToken() {
-  let token = Taro.getStorageSync(userInfoStorage);
+  let token = Taro.getStorageSync(tokenStorage);
 
   if (!token) {
     let appid = Taro.getAccountInfoSync().miniProgram.appId;
     const { code } = await Taro.login();
-    const { data: userInfo } = await post(`user/wxLogin?code=${code}&appId=${appid}`, {}, { isNeedToken: false });
-    Taro.setStorageSync(userInfoStorage, userInfo);
-    Taro.setStorageSync(tokenStorage, userInfo?.token);
+    const { data: { data } } = await post(`user/wxLogin?code=${code}&appId=${appid}`, {}, { isNeedToken: false });
+    Taro.setStorageSync(tokenStorage, data);
+    token = data;
   }
 
   return token;

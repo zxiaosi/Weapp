@@ -129,9 +129,9 @@ export default class EchartsTest extends Component {
       [-20, -32, -21, -34, -90, -130, -110]
     ];
 
-    let repo1 = get("", {}, { url: "https://api.github.com/repos/facebook/react/languages", isShowFailToast: false });
-    let repo2 = get("", {}, { url: "https://api.github.com/repos/NervJS/taro/languages", isShowFailToast: false });
-    let repo3 = get("", {}, { url: "https://api.github.com/repos/webpack/webpack/languages", isShowFailToast: false });
+    let repo1 = get("", {}, { url: "https://api.github.com/repos/facebook/react/languages", isShowFailToast: false, isNeedToken: false });
+    let repo2 = get("", {}, { url: "https://api.github.com/repos/NervJS/taro/languages", isShowFailToast: false, isNeedToken: false });
+    let repo3 = get("", {}, { url: "https://api.github.com/repos/webpack/webpack/languages", isShowFailToast: false, isNeedToken: false });
 
     const [{ data: data1 }, { data: data2 }, { data: data3 }] = await Promise.all([repo1, repo2, repo3]);
     console.log("data", data1, data2, data3);

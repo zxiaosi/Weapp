@@ -12,10 +12,15 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
+  babel: {
+    sourceMap: true,
+    presets: ['env'],
+    plugins: ['transform-class-properties', 'transform-decorators-legacy', 'transform-object-rest-spread']
+  },
   plugins: [],
   defineConstants: { // 全局变量设置
   },
-  copy: { // 文件 copy 配置
+  copy: { // 文件 copy 配置 https://taro.redwoodjs.cn/docs/2.x/config-detail#copypatterns
     patterns: [
     ],
     options: {
@@ -53,6 +58,8 @@ const config = {
     },
     compile: { // 编译过程的相关配置 https://taro.redwoodjs.cn/docs/2.x/config-detail#minicompile
       exclude: [ // 排除某个文件
+        resolve(__dirname, '..', 'src/pages/echarts/wxecharts/ec-canvas.wxss.js'),
+        resolve(__dirname, '..', 'src/pages/echarts/wxecharts/ec-canvas.wxml.js'),
       ]
     }
   },
