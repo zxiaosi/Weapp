@@ -6,7 +6,7 @@ import { locationStorage, mapId } from '~/config';
 import orientation from "~/images/orientation.png";
 import point from "~/images/point.png";
 import MyMap from '~/components/myMap';
-import { getLocation, getLocationTemp } from '~/utils/handleLocation';
+import { getLocation } from '~/utils/handleLocation';
 
 definePageConfig({
   navigationBarTitleText: "Map",
@@ -63,8 +63,7 @@ export default function MapTest() {
   }
 
   const clickLocationBtn = () => {
-    // getLocation((res) => setLocation(res));
-    getLocationTemp((res) => setLocation(res));
+    getLocation((res) => setLocation(res));
     let mapCtx = Taro.createMapContext(mapId);
     mapCtx.moveToLocation(location);
   }

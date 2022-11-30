@@ -3,3 +3,9 @@ export interface EncryptedData {
   encryptedData?: string; // 包括敏感数据在内的完整用户信息的加密数据
   iv?: string; // 加密算法的初始向量
 }
+
+export interface User {
+  name?: string;
+  avatar?: string;
+  phone?: string;
+}

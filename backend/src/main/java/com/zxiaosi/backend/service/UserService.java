@@ -19,8 +19,24 @@ public interface UserService extends IService<User> {
     /**
      * 根据 openId 得到用户信息
      *
+     * @param openId 用户 openId
      * @return 用户信息
      */
     User byOpenIdGetUserService(String openId);
+
+    /**
+     * 更新用户信息
+     *
+     * @param entity 用户实体类
+     */
+    void updateUserInfoService(User entity);
+
+
+    /**
+     * 得到用户信息
+     *
+     * @return 用户信息
+     */
+    User getUserInfoService();
 
 }

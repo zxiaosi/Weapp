@@ -1,4 +1,4 @@
-package com.zxiaosi.backend.aspect;
+package com.zxiaosi.backend.common.aspect;
 
 import com.alibaba.fastjson2.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;

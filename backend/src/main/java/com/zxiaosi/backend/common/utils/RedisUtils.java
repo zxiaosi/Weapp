@@ -16,6 +16,19 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class RedisUtils {
+
+    /**
+     * 默认过期时长，单位：秒
+     */
+    @Value("${config.redis.default-expire}")
+    private long defaultExpire;
+
+    /**
+     * 不设置过期时长
+     */
+    @Value("${config.redis.not-expire}")
+    private long notExpire;
+
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -33,18 +46,6 @@ public class RedisUtils {
 
     @Autowired
     private ZSetOperations<String, Object> zSetOperations;
-
-    /**
-     * 默认过期时长，单位：秒
-     */
-    @Value("${config.redis.default-expire}")
-    private long defaultExpire;
-
-    /**
-     * 不设置过期时长
-     */
-    @Value("${config.redis.not-expire}")
-    private long notExpire;
 
     /**
      * 设置 key-value: 使用默认过期时间

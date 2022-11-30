@@ -1,7 +1,9 @@
 package com.zxiaosi.backend.controller;
 
 import com.alibaba.fastjson2.JSONObject;
+import com.zxiaosi.backend.common.holder.CurrentLoginUserHolder;
 import com.zxiaosi.backend.common.utils.Result;
+import com.zxiaosi.backend.domain.User;
 import com.zxiaosi.backend.domain.vo.EncryptedDataVo;
 import com.zxiaosi.backend.service.UserService;
 import com.zxiaosi.backend.service.WxUserService;
@@ -17,10 +19,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    WxUserService wxUserService;
+    private WxUserService wxUserService;
 
     @PostMapping("/wxLogin")
     public Result<String> wxLogin(String code, String appId) {
@@ -29,15 +31,23 @@ public class UserController {
         return Result.success(token);
     }
 
-    @PostMapping("/updatePhone")
-    public Result<?> updatePhone(@RequestBody EncryptedDataVo entity) {
+    @PostMapping("/decryptPhone")
+    public Result<?> decryptPhone(@RequestBody EncryptedDataVo entity) {
         String accessToken = wxUserService.byCodeGetPhoneTokenService(entity.getCode());
         JSONObject userInfo = wxUserService.decryptPhoneService(accessToken, entity.getCode());
+        // 这里建议可以保存手机号
         return Result.success(userInfo);
     }
 
+    @PostMapping("/updateUserInfo")
+    public Result<?> updateUserInfo(@RequestBody User entity) {
+        userService.updateUserInfoService(entity);
+        return Result.success();
+    }
+
     @GetMapping("/getUserInfo")
-    public Result<String> getUserInfo() {
-        return Result.success("getUserInfo");
+    public Result<User> getUserInfo() {
+        User user = userService.getUserInfoService();
+        return Result.success(user);
     }
 }

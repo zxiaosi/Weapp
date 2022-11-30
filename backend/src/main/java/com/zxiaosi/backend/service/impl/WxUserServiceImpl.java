@@ -13,8 +13,6 @@ import com.zxiaosi.backend.domain.WxUser;
 import com.zxiaosi.backend.mapper.WxUserMapper;
 import com.zxiaosi.backend.service.UserService;
 import com.zxiaosi.backend.service.WxUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -28,17 +26,6 @@ import java.util.HashMap;
 @Service
 public class WxUserServiceImpl extends ServiceImpl<WxUserMapper, WxUser> implements WxUserService {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(WxUserServiceImpl.class);
-
-    @Autowired
-    private RedisUtils redisUtils;
-
-    @Autowired
-    private JwtUtils jwtUtils;
-
-    @Autowired
-    private UserService userService;
-
     @Value("${config.weixin.appid}")
     private String appid;
 
@@ -47,6 +34,15 @@ public class WxUserServiceImpl extends ServiceImpl<WxUserMapper, WxUser> impleme
 
     @Value("${config.jwt.expire}")
     private String expire;
+
+    @Autowired
+    private JwtUtils jwtUtils;
+
+    @Autowired
+    private RedisUtils redisUtils;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * <a href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html">
@@ -67,10 +63,13 @@ public class WxUserServiceImpl extends ServiceImpl<WxUserMapper, WxUser> impleme
         if (StrUtil.isEmpty(openId)) {
             throw new CustomException("向微信服务器发送请求: code换取openId请求错误!");
         }
-        User user = userService.byOpenIdGetUserService(openId);
-        redisUtils.set("userId-" + user.getId(), object);
 
-        return jwtUtils.jwtCreate(user.getId(), openId, appid, Integer.parseInt(expire));
+        User user = userService.byOpenIdGetUserService(openId);
+        String token = jwtUtils.jwtCreate(user.getId(), openId, appid, Integer.parseInt(expire));
+        // 仅作记录
+        redisUtils.set(token, user);
+
+        return token;
     }
 
     /**

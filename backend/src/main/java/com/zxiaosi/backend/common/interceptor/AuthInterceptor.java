@@ -4,8 +4,8 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.exceptions.ValidateException;
 import cn.hutool.jwt.JWTValidator;
 import com.zxiaosi.backend.common.exception.CustomException;
+import com.zxiaosi.backend.common.holder.CurrentLoginUserHolder;
 import com.zxiaosi.backend.common.utils.JwtUtils;
-import com.zxiaosi.backend.common.utils.RedisUtils;
 import com.zxiaosi.backend.domain.User;
 import com.zxiaosi.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     private UserService userService;
 
     @Autowired
-    private RedisUtils redisUtils;
+    private CurrentLoginUserHolder currentLoginUserHolder;
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -62,8 +63,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         // 存储用户信息
         String userId = jwtUtils.jwtParse(token, "userId");
-        User user = userService.getById(userId);
-        redisUtils.set(token, user);
+        User user = new User();
+        user.setId(Long.valueOf(userId));
+        currentLoginUserHolder.setUser(user);
 
         return true;
     }
@@ -80,5 +82,6 @@ public class AuthInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        currentLoginUserHolder.removeUser();
     }
 }

@@ -33,7 +33,7 @@ public class Result<T> implements Serializable {
      */
     private long total;
 
-    public Result() {
+    private Result() {
 
     }
 
