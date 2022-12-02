@@ -14,8 +14,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 
 /**
+ * Web配置类
+ *
  * @author : zxiaosi
- * @date : 2022/9/2 16:52
+ * @date : 2022/12/02 10:11
  */
 @EnableWebMvc
 @Configuration

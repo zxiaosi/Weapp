@@ -8,6 +8,11 @@
 + `frontend/project.config.json` **appId**
 + `backend/src/main/resources/application.yml` **appid**、**secret**
 
+### 配置数据库
+
++ `backend/db/weapp.sql` **数据库**
++ `backend/src/main/resources/application.yml` **Mysql**、**Redis**
+
 ### 说明
 
 + **个人小程序** 获取不了手机号

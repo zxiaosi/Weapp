@@ -16,8 +16,10 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 /**
+ * 用户服务实现类
+ *
  * @author : zxiaosi
- * @date : 2022/11/23 15:52
+ * @date : 2022/12/02 10:11
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {

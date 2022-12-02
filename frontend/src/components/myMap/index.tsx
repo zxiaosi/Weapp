@@ -3,7 +3,7 @@ import Taro, { useDidShow, useLoad } from '@tarojs/taro';
 import { useRef, useState } from 'react'
 import styles from "./index.module.less";
 import { mapId } from '~/config';
-import { getLocation, getLocationTemp } from '~/utils/handleLocation';
+import { getLocation } from '~/utils/handleLocation';
 
 interface Props {
   width?: number | string; // 地图宽度
@@ -24,8 +24,7 @@ export default function MyMap(props: Props) {
 
   const getCurrentLocation = async () => {
     const success = (res: any) => { setLocation(res); };
-    // await getLocation(success); // 需要appId
-    getLocationTemp(success); // 临时获取
+    await getLocation(success); // 需要appId
   }
 
   useLoad(() => {

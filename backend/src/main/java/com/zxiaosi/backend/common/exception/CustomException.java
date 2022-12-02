@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
  * 自定义异常捕获
  *
  * @author : zxiaosi
- * @date : 2022/9/18 17:18
+ * @date : 2022/12/02 10:11
  */
 public class CustomException extends RuntimeException {
 

@@ -15,7 +15,7 @@ import javax.naming.AuthenticationException;
  * 全局异常捕获
  *
  * @author : zxiaosi
- * @date : 2022/9/16 18:19
+ * @date : 2022/12/02 10:11
  */
 @RestControllerAdvice
 public class GlobalException {

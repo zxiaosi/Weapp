@@ -9,10 +9,10 @@ const baseApi = {
 }
 
 // 请求路径
-export const BASE_URL = baseApi[env] + "/api";
+export const baseUrl = baseApi[env] + "/api";
 
 // 默认登录页
-export const LOGIN_URL = "/pages/home/index";
+export const loginUrl = "/pages/home/index";
 
 // 本地缓存名字
 export const tokenStorage = "userToken";

@@ -5,8 +5,10 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 微信用户实体类
+ *
  * @author : zxiaosi
- * @date : 2022/11/24 16:58
+ * @date : 2022/12/02 10:11
  */
 @Data
 public class WxUser implements Serializable {

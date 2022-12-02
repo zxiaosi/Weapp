@@ -12,8 +12,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 用户实体类
+ *
  * @author : zxiaosi
- * @date : 2022/11/23 15:38
+ * @date : 2022/12/02 10:11
  */
 @Data
 public class User implements Serializable {
@@ -30,11 +32,6 @@ public class User implements Serializable {
      * 用户名
      */
     private String name;
-
-    /**
-     * 性别：1-男 0-女
-     */
-    private Short sex;
 
     /**
      * 头像

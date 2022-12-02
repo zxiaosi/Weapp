@@ -20,8 +20,10 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 
 /**
+ * 微信用户服务实现类
+ *
  * @author : zxiaosi
- * @date : 2022/11/24 17:10
+ * @date : 2022/12/02 10:11
  */
 @Service
 public class WxUserServiceImpl extends ServiceImpl<WxUserMapper, WxUser> implements WxUserService {

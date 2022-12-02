@@ -88,21 +88,3 @@ export async function getLocation(success?: (location: any) => void) {
     await openPermissions();
   }
 }
-
-/**
- * 获取用户定位(临时)
- * @param success 成功回调
- */
-export async function getLocationTemp(success?: (location: any) => void) {
-  Taro.getLocation({
-    type: "gcj02", // wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
-    success: (res) => {
-      console.log("成功获取定位--", res);
-      Taro.setStorageSync(locationStorage, res);
-      if (success) success(res); // 成功回调
-    },
-    fail: async (err) => { // 手机定位未打开
-      console.log("获取定位失败--", err);
-    }
-  })
-}

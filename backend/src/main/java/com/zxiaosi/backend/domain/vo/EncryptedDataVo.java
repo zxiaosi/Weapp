@@ -3,8 +3,10 @@ package com.zxiaosi.backend.domain.vo;
 import lombok.Data;
 
 /**
+ * 加密视图类
+ *
  * @author : zxiaosi
- * @date : 2022/11/25 18:02
+ * @date : 2022/12/02 10:11
  */
 @Data
 public class EncryptedDataVo {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * 用户本地线程池
  *
  * @author : zxiaosi
- * @date : 2022/11/30 14:39
+ * @date : 2022/12/02 10:11
  */
 @Component
 public class CurrentLoginUserHolder {

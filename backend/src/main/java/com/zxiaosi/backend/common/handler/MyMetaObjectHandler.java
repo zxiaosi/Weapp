@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * MyBatisPlus 自动填充 创建时间和更新时间
  *
  * @author : zxiaosi
- * @date : 2022/9/18 17:46
+ * @date : 2022/12/02 10:11
  */
 @Component
 public class MyMetaObjectHandler implements MetaObjectHandler {

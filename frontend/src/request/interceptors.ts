@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { LOGIN_URL, tokenStorage } from "~/config";
+import { loginUrl, tokenStorage } from "~/config";
 import { post } from ".";
 
 /**
@@ -65,7 +65,7 @@ function responseInterceptor(request: Taro.RequestParams, response: Taro.request
 
     if (statusCode == 401) {
       Taro.clearStorage();
-      Taro.reLaunch({ url: LOGIN_URL });
+      Taro.reLaunch({ url: loginUrl });
     }
 
     if (isShowFailToast) Taro.showToast({ icon: 'none', title: title || errMsg, duration: 2000, mask: true });

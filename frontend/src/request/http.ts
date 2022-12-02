@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { BASE_URL } from '~/config';
+import { baseUrl } from '~/config';
 import interceptor from './interceptors';
 
 // Taro 提供了两个内置拦截器
@@ -83,7 +83,7 @@ class HttpRequest {
   private normalizationUrl(url: string) {
     let requestUrl = url;
 
-    if (BASE_URL[BASE_URL.length - 1] === '/') {
+    if (baseUrl[baseUrl.length - 1] === '/') {
       if (requestUrl[0] === '/') {
         requestUrl = requestUrl.replace('/', '');
       }
@@ -94,7 +94,7 @@ class HttpRequest {
     }
 
     if (!/^https{0,1}:\/\//g.test(requestUrl)) {
-      requestUrl = `${BASE_URL}${requestUrl}`;
+      requestUrl = `${baseUrl}${requestUrl}`;
     }
 
     return requestUrl;

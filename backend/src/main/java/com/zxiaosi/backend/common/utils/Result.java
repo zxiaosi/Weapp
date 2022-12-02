@@ -9,7 +9,7 @@ import java.io.Serializable;
  * 返回结果工具类
  *
  * @author : zxiaosi
- * @date : 2022/9/16 18:29
+ * @date : 2022/12/02 10:11
  */
 @Data
 public class Result<T> implements Serializable {

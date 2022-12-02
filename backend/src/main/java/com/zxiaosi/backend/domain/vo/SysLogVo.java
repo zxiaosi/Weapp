@@ -9,7 +9,7 @@ import java.util.Date;
  * 日志视图类
  *
  * @author : zxiaosi
- * @date : 2022/11/27 23:57
+ * @date : 2022/12/02 10:11
  */
 @Data
 public class SysLogVo {

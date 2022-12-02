@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zxiaosi.backend.domain.User;
 
 /**
+ * 用户Service
+ *
  * @author : zxiaosi
- * @date : 2022/11/23 15:50
+ * @date : 2022/12/02 10:11
  */
 public interface UserService extends IService<User> {
 

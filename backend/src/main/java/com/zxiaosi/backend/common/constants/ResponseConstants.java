@@ -4,7 +4,7 @@ package com.zxiaosi.backend.common.constants;
  * 响应常量
  *
  * @author : zxiaosi
- * @date : 2022/9/18 18:26
+ * @date : 2022/12/02 10:11
  */
 public interface ResponseConstants {
 

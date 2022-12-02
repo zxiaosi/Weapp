@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zxiaosi.backend.domain.WxUser;
 
 /**
+ * 微信用户Service
+ *
  * @author : zxiaosi
- * @date : 2022/11/24 16:30
+ * @date : 2022/12/02 10:11
  */
 public interface WxUserService extends IService<WxUser> {
 
